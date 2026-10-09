@@ -1,0 +1,14 @@
+# Local development overrides — disables nginx (requires SSL certs) and ollama
+# Applied automatically by `docker compose up`
+version: "3.9"
+
+services:
+  nginx:
+    profiles: ["production"]   # only starts when --profile production is passed
+
+  ollama:
+    profiles: ["ollama"]       # only starts when --profile ollama is passed
+
+  frontend:
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
